@@ -1,0 +1,30 @@
+version: "3.0"
+
+services:
+  amis-production-db:
+    image: mysql:8
+    container_name: amis-production-db
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+        MYSQL_ROOT_PASSWORD: password
+        MYSQL_DATABASE: db
+    ports:
+        - "7222:3306"
+    volumes: 
+        - ./db-volume:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+  
+  amis-production-services:
+    container_name:  amis-production-services
+    build: .  
+    ports: 
+      - "3333:8080"
+    volumes: 
+      - ./:/app
+    depends_on:
+      amis-production-db:
+        condition: service_healthy
+
