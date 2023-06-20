@@ -1,4 +1,4 @@
-from domain.entities.Centro import Centro, CentroResponse, CentroBase, CentroRequestCodigo, Status, Turno
+from domain.entities.Centro import Centro, CentroResponse, CentroBase, CentroRequest, Status, Turno
 from domain.repositories.CentroRepositoryBaseModel import CentroRepositoryBaseModel
 from infrastructure.repositories.fieldRepository import FieldValidation
 from typing import NoReturn
@@ -16,8 +16,8 @@ class CentroUseCase():
         '''Função para salvar um objeto Centro na DB, utilizada também como update'''
         return self.__centroRepository__.save(centroSent=centroSent)
 
-    def delete_by_codigo(self, codigo: int) -> None:
-        return self.__centroRepository__.delete_by_codigo(centro_codigo=codigo)
+    def delete_by_id(self, id: int) -> None:
+        return self.__centroRepository__.delete_by_id(centro_id=id)
 
     def find_all(self) -> list[CentroResponse]:
         centros_db = self.__centroRepository__.find_all()
@@ -28,17 +28,17 @@ class CentroUseCase():
                 data_agendada=centro_db.data_agendada,
                 status=centro_db.status,
                 turno=centro_db.turno,
-                codigo=centro_db.codigo
+                id=centro_db.id
             )
             centros.append(centro)
         
         return centros
     
 
-    def find_by_codigo(self, centro_codigo : int) -> CentroBase | None:
-        return self.__centroRepository__.find_by_codigo(centro_codigo=centro_codigo)
+    def find_by_id(self, centro_id : int) -> CentroBase | None:
+        return self.__centroRepository__.find_by_id(centro_id=centro_id)
 
-    def update(self, centroSent: CentroRequestCodigo) -> NoReturn:
+    def update(self, centroSent: CentroRequest) -> NoReturn:
         """Sobrescreve os dados de um Centro, assume que ele já exista"""
         self.__centroRepository__.update(Centro(**centroSent.__dict__))
 

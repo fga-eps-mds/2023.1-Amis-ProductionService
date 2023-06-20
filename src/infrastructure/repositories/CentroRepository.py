@@ -43,10 +43,10 @@ class CentroRepository:
 
     
 
-    def delete_by_codigo(self, centro_codigo: int) -> NoReturn:
+    def delete_by_id(self, centro_id: int) -> NoReturn:
         """Função para deletar um Centro do DB, caso exista"""
         session = self.database()
-        Centro_session = session.query(Centro).filter(Centro.codigo == centro_codigo).first()
+        Centro_session = session.query(Centro).filter(Centro.id == centro_id).first()
 
         if Centro_session is not None:
             session.delete(Centro_session)
@@ -54,14 +54,14 @@ class CentroRepository:
 
         session.close()
 
-    def find_by_codigo(self, centro_codigo: int) -> Centro | None:
-        """Faz uma busca pelo codigo no banco e retorna o objeto"""
+    def find_by_id(self, centro_id: int) -> Centro | None:
+        """Faz uma busca pelo id no banco e retorna o objeto"""
         session = self.database()
         session.close()
-        return session.query(Centro).filter(Centro.codigo == centro_codigo).first()
+        return session.query(Centro).filter(Centro.id == centro_id).first()
     
     def find_by_data(self, data: str) -> list[Centro] | None:
-        """Faz uma busca pelo codigo no banco e retorna o objeto"""
+        """Faz uma busca pelo id no banco e retorna o objeto"""
         session = self.database()
         try:
             centros = session.query(Centro).filter(Centro.data_agendada == data).all()

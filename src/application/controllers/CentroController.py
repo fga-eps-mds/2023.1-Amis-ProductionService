@@ -1,6 +1,6 @@
 from database import engine, Base
 from fastapi import APIRouter, Response, status, status, HTTPException
-from src.domain.entities.Centro import Centro, CentroRequest, CentroRequestCodigo, CentroResponse
+from src.domain.entities.Centro import Centro, CentroRequest, CentroResponse
 from fastapi.encoders import jsonable_encoder
 
 from application.controllers import centroUseCase
@@ -36,21 +36,21 @@ def find_all():
 
     return serialized_centros
 
-@router_centro.put("/{codigo}", status_code=status.HTTP_201_CREATED)
-def update(centroSent: CentroRequestCodigo):
-    if centroUseCase.find_by_codigo(centroSent.codigo) is None:
+@router_centro.put("/{id}", status_code=status.HTTP_201_CREATED)
+def update(centroSent: CentroRequest):
+    if centroUseCase.find_by_id(centroSent.id) is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND,
                             detail="centro não existente")
     centroUseCase.update(centroSent)
 
 
-@router_centro.delete("/{codigo}", status_code=status.HTTP_204_NO_CONTENT)
-def delete(codigo: int):
-    centro = centroUseCase.find_by_codigo(codigo)
+@router_centro.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete(id: int):
+    centro = centroUseCase.find_by_id(id)
     if centro is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="centro não encontrado")
 
-    centroUseCase.delete_by_codigo(codigo=centro.codigo)
+    centroUseCase.delete_by_id(id=centro.id)
 
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 

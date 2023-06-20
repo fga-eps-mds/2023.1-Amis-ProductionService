@@ -25,7 +25,7 @@ class Centro(Base):
     '''Classe para estabelecer o modelo na tabela DB'''
     __tablename__ = "centroProd"
     __table_args__ = {"extend_existing": True}
-    codigo: int = Column(Integer, primary_key = True)
+    id: int = Column(Integer, primary_key = True)
     descricao : str = Column(String(170), nullable = False)
     data_agendada : str= Column(String(10), nullable = False)
     status: Enum = Column(EnumDB(Status), nullable = False)
@@ -37,12 +37,12 @@ class CentroRequest(CentroBase):
     '''...'''
     ...
 
-class CentroRequestCodigo(CentroBase):
+class CentroRequest(CentroBase):
     """Necessário para se fazer o update"""
-    codigo : int
+    id : int
 
 class CentroResponse(CentroBase):
     '''...'''
-    codigo: int
+    id: int
     class Config:
         orm_mode = True
