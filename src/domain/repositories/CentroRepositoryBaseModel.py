@@ -28,6 +28,9 @@ class CentroRepositoryBaseModel(Protocol):
         """Faz uma busca pelo id e retorna os dados do Centro caso existe"""
         ...
 
+    def validate_centro(self, centro : Centro) -> dict:
+        ...
+
     def find_by_data(self, data: str) -> list[Centro] | None:
 
         ...

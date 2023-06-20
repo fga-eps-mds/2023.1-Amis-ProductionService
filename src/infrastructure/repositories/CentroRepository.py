@@ -5,6 +5,8 @@ from typing import Callable
 from domain.repositories import CentroRepositoryBaseModel
 from typing import NoReturn
 
+from src.infrastructure.repositories.fieldRepository import FieldValidation
+
 class CentroRepository:
 
     database: Callable[[], Session]
@@ -72,8 +74,22 @@ class CentroRepository:
             return None
         finally:
             session.close()
-    
 
+    def validate_centro(self, centro : Centro) -> dict:
+
+        fieldInfoDict = {}
+        fieldInfoDict["descricao"] = vars(FieldValidation.descricaoValidation(
+            centro.descricao))
+        fieldInfoDict["data_agendada"] = vars(FieldValidation.dataValidation(centro.data_agendada))
+
+        completeStatus = True
+        for key in fieldInfoDict:
+            if fieldInfoDict[key]['status'] == False:
+                completeStatus = False
+                break
+        fieldInfoDict['completeStatus'] = completeStatus
+
+        return fieldInfoDict
 
 assert isinstance(CentroRepository(
     {}), CentroRepositoryBaseModel.CentroRepositoryBaseModel)
