@@ -37,7 +37,7 @@ class CentroRequest(CentroBase):
     '''...'''
     ...
 
-class CentroRequest(CentroBase):
+class CentroRequestId(CentroBase):
     """Necessário para se fazer o update"""
     id : int
 

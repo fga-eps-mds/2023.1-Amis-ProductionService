@@ -1,6 +1,6 @@
 from database import engine, Base
 from fastapi import APIRouter, Response, status, status, HTTPException
-from src.domain.entities.Centro import Centro, CentroRequest, CentroResponse
+from src.domain.entities.Centro import Centro, CentroRequest, CentroRequestId, CentroResponse
 from fastapi.encoders import jsonable_encoder
 
 from application.controllers import centroUseCase
@@ -37,7 +37,7 @@ def find_all():
     return serialized_centros
 
 @router_centro.put("/{id}", status_code=status.HTTP_201_CREATED)
-def update(centroSent: CentroRequest):
+def update(centroSent: CentroRequestId):
     if centroUseCase.find_by_id(centroSent.id) is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND,
                             detail="centro não existente")
