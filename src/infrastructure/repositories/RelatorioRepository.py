@@ -12,14 +12,14 @@ class RelatorioRepository:
         self.database = session
 
 
-    def save(self, centroSent: Relatorio) -> Relatorio:
+    def save(self, relatorioSent: Relatorio) -> Relatorio:
         session = self.database()
         # TODO : verificar se o URM possui isso built in
-        session.add(centroSent)
+        session.add(relatorioSent)
         session.commit()
         session.expunge_all()
         session.close()
-        return centroSent
+        return relatorioSent
 
 
 assert isinstance(RelatorioRepository(

@@ -5,6 +5,7 @@ load_dotenv()
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 from application.controllers.CentroController import router_centro
+from application.controllers.RelatorioController import router_relatorio
 load_dotenv()
 app = FastAPI()
 
@@ -19,7 +20,7 @@ app.add_middleware(
 )
 
 app.include_router(router_centro)
-
+app.include_router(router_relatorio)
 
 @app.get('/')
 async def root():

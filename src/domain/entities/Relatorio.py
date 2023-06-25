@@ -10,21 +10,23 @@ class Status(Enum):
     AUSENTE=2
 
 class RelatorioBase(BaseModel):
+    nome_aluno:str
     comentario : str
     status: Status
     nota: int 
-    quantidade_produzida : str
-    quantidade_desejada : str
+    quantidade_produzida : int
+    quantidade_desejada : int
 
 class Relatorio(Base):
     __tablename__ = "relatorio"
+    __table_args__ = {"extend_existing": True}
     id: int = Column(Integer, primary_key = True, index= True)
     nome_aluno : str = Column(String(170), nullable = False)
     comentario : str= Column(String(500), nullable = False)
     status: Enum = Column(EnumDB(Status), nullable = False)
     nota: int = Column(Integer, nullable=False)
-    quantidade_produzida : str= Column(String(10), nullable = True)
-    quantidade_desejada : str= Column(String(10), nullable = True)
+    quantidade_produzida : str= Column(Integer, nullable = True)
+    quantidade_desejada : str= Column(Integer, nullable = True)
 
 
 
