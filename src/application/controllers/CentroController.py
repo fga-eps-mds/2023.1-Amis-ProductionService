@@ -71,3 +71,12 @@ def delete(id: int):
 
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
+@router_centro.get("/{id}", response_model=CentroResponse)
+def find_by_id(id: int):
+    centro = centroUseCase.find_by_id(id)
+    if centro is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="centro não encontrado")
+    
+    serialized_centro = jsonable_encoder(centro)
+
+    return serialized_centro
