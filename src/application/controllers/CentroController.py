@@ -33,7 +33,7 @@ def create(centro_request: CentroRequest):
 
     return centro_request
 
-@router_centro.post("{idCentro}/inscrever/{idAluno}",
+@router_centro.post("/{idCentro}/inscrever/{idAluno}",
                     status_code=status.HTTP_201_CREATED,
                     response_model=CentroInscricoesResponse)
 def subscribe(idCentro: int, idAluno: str):
