@@ -20,16 +20,18 @@ class CentroBase(BaseModel):
     data_agendada: str
     status: Status
     turno: Turno
+    vagas: int
 
 class Centro(Base):
     '''Classe para estabelecer o modelo na tabela DB'''
     __tablename__ = "centroProd"
     __table_args__ = {"extend_existing": True}
-    id: int = Column(Integer, primary_key = True)
+    id: int = Column(Integer, primary_key = True, index=True)
     descricao : str = Column(String(170), nullable = False)
     data_agendada : str= Column(String(10), nullable = False)
     status: Enum = Column(EnumDB(Status), nullable = False)
     turno: Enum = Column(EnumDB(Turno), nullable=False)
+    vagas: int = Column(Integer, nullable = False)
 
 
 
