@@ -18,6 +18,18 @@ router_centro = APIRouter(
     tags=["centro"]
 )
 
+@router_centro.get("/{id}/inscricoes")
+def listInscricoes(id: int):
+    return centroInscricoesUseCase.list_inscricoes(centro_id=id)
+
+@router_centro.patch("/{idCentro}/inscricoes/{idAluno}")
+def confirmarInscricao(idCentro: int, idAluno: str):
+    return centroInscricoesUseCase.confirmar_inscricao(centro_id=idCentro, id_aluno=idAluno)
+
+@router_centro.delete("/{idCentro}/inscricoes/{idAluno}")
+def confirmarInscricao(idCentro: int, idAluno: str):
+    return centroInscricoesUseCase.deletar_inscricao(centro_id=idCentro, id_aluno=idAluno)
+
 @router_centro.post("/", status_code=status.HTTP_201_CREATED)
 def create(centro_request: CentroRequest):
     centro = Centro(**centro_request.__dict__)
