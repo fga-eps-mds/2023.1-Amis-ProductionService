@@ -20,6 +20,7 @@ class CentroBase(BaseModel):
     data_agendada: str
     status: Status
     turno: Turno
+    vagas: int
 
 class Centro(Base):
     '''Classe para estabelecer o modelo na tabela DB'''
@@ -30,8 +31,7 @@ class Centro(Base):
     data_agendada : str= Column(String(10), nullable = False)
     status: Enum = Column(EnumDB(Status), nullable = False)
     turno: Enum = Column(EnumDB(Turno), nullable=False)
-
-
+    vagas: int = Column(Integer, nullable = False)
 
 class CentroRequest(CentroBase):
     '''...'''
@@ -44,5 +44,6 @@ class CentroRequestId(CentroBase):
 class CentroResponse(CentroBase):
     '''...'''
     id: int
+    vagasRestantes: int
     class Config:
         orm_mode = True
