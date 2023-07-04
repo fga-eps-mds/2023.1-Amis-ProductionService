@@ -12,7 +12,7 @@ class Status(Enum):
 class RelatorioBase(BaseModel):
     nome_aluno:str
     comentario : str
-    status: Status
+    status: str
     nota: int 
     quantidade_produzida : int
     quantidade_desejada : int
