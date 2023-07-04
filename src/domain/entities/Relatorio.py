@@ -23,10 +23,10 @@ class Relatorio(Base):
     id: int = Column(Integer, primary_key = True, index= True)
     nome_aluno : str = Column(String(170), nullable = False)
     comentario : str= Column(String(500), nullable = False)
-    status: Enum = Column(EnumDB(Status), nullable = False)
+    status: str = Column(String(100), nullable = False)
     nota: int = Column(Integer, nullable=False)
-    quantidade_produzida : str= Column(Integer, nullable = True)
-    quantidade_desejada : str= Column(Integer, nullable = True)
+    quantidade_produzida : int= Column(Integer, nullable = True)
+    quantidade_desejada : int= Column(Integer, nullable = True)
 
 
 
