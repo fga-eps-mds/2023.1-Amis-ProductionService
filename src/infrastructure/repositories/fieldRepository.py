@@ -40,4 +40,13 @@ class FieldValidation:
         if len(descricao) > 170:
             return fieldInfo(False,"Descrição muito grande")
         return fieldInfo(True,"Descrição válida")
-        
+    
+    @classmethod
+    def vagasValidation(cls, vagas: int):
+        if vagas <= 0:
+            return fieldInfo(False, "Deve ter no minimo uma vaga")
+    
+        if vagas >= 2147483648: # 2^31
+            return fieldInfo(False, "Vagas devem ser menores que 2147483648")
+
+        return fieldInfo(True, "Vagas válida")

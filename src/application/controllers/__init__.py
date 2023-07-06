@@ -1,14 +1,23 @@
-from database import get_db
-from src.application.useCases.CentroUseCase import CentroUseCase
 from src.infrastructure.repositories.CentroRepository import CentroRepository
+from src.infrastructure.repositories.CentroInscricoesRepository import CentroInscricoesRepository
+
+from src.application.useCases.CentroUseCase import CentroUseCase
+from src.application.useCases.CentroInscricaoUseCase import CentroInscricoesUseCase
+
+from src.infrastructure.repositories.RelatorioRepository import RelatorioRepository
+from src.application.useCases.RelatorioUseCase import RelatorioUseCase
 
 from database import SessionLocal
-
 databaseSessionGenerator = SessionLocal
 
 centroRepository = CentroRepository(databaseSessionGenerator)
+centroInscricoesRepository = CentroInscricoesRepository(databaseSessionGenerator)
 
-centroUseCase = CentroUseCase(centroRepository=centroRepository)
+centroUseCase = CentroUseCase(centroRepository=centroRepository, centroInscricoesRepository=centroInscricoesRepository)
+centroInscricoesUseCase = CentroInscricoesUseCase(centroInscricoesRepository=centroInscricoesRepository)
+
+relatorioRepository = RelatorioRepository(databaseSessionGenerator)
+relatorioUseCase= RelatorioUseCase(relatorioRepository=relatorioRepository)
 
 
 
