@@ -53,7 +53,9 @@ class CentroInscricoesRepository:
     def deletar_inscricao(self, centro_id: int, id_aluno: str):
         session = self.database()
         inscricao = session.query(CentroInscricoes).filter(
-            CentroInscricoes.idCentro == centro_id and CentroInscricoes.idAluno == id_aluno
+            CentroInscricoes.idCentro == centro_id
+        ).filter(
+            CentroInscricoes.idAluno == id_aluno
         ).first()
 
         if inscricao is not None:
