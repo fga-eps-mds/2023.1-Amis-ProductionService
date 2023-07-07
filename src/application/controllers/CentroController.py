@@ -53,10 +53,10 @@ def subscribe(idCentro: int, idAluno: str):
         raise HTTPException(status.HTTP_404_NOT_FOUND,
                             detail="centro não existente")
 
-    centroInscricao = CentroInscricoes(idAluno=idAluno, idCentro=idCentro)
+    centroInscricao = CentroInscricoes(idAluno=idAluno, idCentro=idCentro, confirmado=0)
     centroInscricoesUseCase.save(centroInscricao)
 
-    return CentroInscricoesResponse(idAluno=idAluno, idCentro=idCentro)
+    return CentroInscricoesResponse(idAluno=idAluno, idCentro=idCentro, confirmado=0)
 
 @router_centro.get("/", response_model=list[CentroResponse])
 def find_all():
