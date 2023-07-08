@@ -5,7 +5,7 @@ from typing import Callable
 from domain.repositories import CentroRepositoryBaseModel
 from typing import NoReturn
 
-from src.infrastructure.repositories.fieldRepository import FieldValidation
+from infrastructure.repositories.fieldRepository import FieldValidation
 
 class CentroRepository:
 
