@@ -1,8 +1,8 @@
 from database import engine, Base
 from fastapi import APIRouter, Response, status, status, HTTPException
 
-from src.domain.entities.Centro import Centro, CentroRequest, CentroResponse, CentroRequestId
-from src.domain.entities.CentroInscricoes import CentroInscricoes, CentroInscricoesResponse
+from domain.entities.Centro import Centro, CentroRequest, CentroResponse, CentroRequestId
+from domain.entities.CentroInscricoes import CentroInscricoes, CentroInscricoesResponse
 
 from fastapi.encoders import jsonable_encoder
 

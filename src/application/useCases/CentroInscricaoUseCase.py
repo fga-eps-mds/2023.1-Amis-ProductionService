@@ -1,4 +1,4 @@
-from src.domain.repositories.CentroInscricoesRepositoryBaseModel import CentroInscricoesRepositoryBaseModel
+from domain.repositories.CentroInscricoesRepositoryBaseModel import CentroInscricoesRepositoryBaseModel
 from domain.entities.CentroInscricoes import CentroInscricoes
 class CentroInscricoesUseCase():
     __centroInscricoesRepository__: CentroInscricoesRepositoryBaseModel
