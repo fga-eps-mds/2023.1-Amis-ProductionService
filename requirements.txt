@@ -8,5 +8,7 @@ pytest
 httpx
 pytest-asyncio
 coverage
+mock_alchemy
+tox
 passlib
 requests
