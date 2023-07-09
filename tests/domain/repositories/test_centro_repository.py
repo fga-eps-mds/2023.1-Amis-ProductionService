@@ -16,8 +16,9 @@ def generate_session():
     return MagicMock(spec=Session)
 
 
-""" def test_find_all():
     # Arrange
+"""  
+def test_find_all():
     database = generate_session()
     centroRepository = CentroRepository(database)
     expected_result = [Centro(), Centro()]
@@ -86,8 +87,8 @@ def test_validateCentro():
     assert result['data_agendada']['status'] is True
     assert result['descricao']['status'] is True
     assert result['completeStatus'] is True
-
 """ 
+
 @mock.patch("infrastructure.repositories.CentroRepository.CentroRepository")
 def test_find_all(mock_repository):
     # Criação do mock do repositório
@@ -101,7 +102,6 @@ def test_find_all(mock_repository):
             id=1
         )
     ]
-
     centroRepository = mock_repository_instance
     centro = centroRepository.find_all()
 
@@ -113,4 +113,6 @@ def test_find_all(mock_repository):
     assert centro[0].data_agendada == "2000-01-01"
     assert centro[0].status == Status.DISPONIVEL
     assert centro[0].turno == Turno.VESPERTINO
-    assert centro[0].id == 1 """
+    assert centro[0].id == 1 
+
+ """
