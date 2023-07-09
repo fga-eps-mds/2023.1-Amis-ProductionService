@@ -58,7 +58,7 @@ sudo docker-compose up --build
 - Para rodar os testes é recomendado executar dentro do docker:
 
 ```bash
-pyteste
+PYTHONPATH=src TEST=true pytest -v -s
 ```
 
 ## Licença
